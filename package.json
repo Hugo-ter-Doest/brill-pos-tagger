@@ -1,0 +1,21 @@
+{
+  "name": "Brill's POS Tagger",
+  "description": "",
+  "version": "0.0.1",
+  "main": "./Brill's POS Tagger.js",
+  "author": {
+    "name": "Hugo W.L. ter Doest",
+    "email": "hwl.ter.doest@gmail.com"
+  },
+  "keywords": [],
+  "licenses": {
+    "type": "gpl30"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/YOUR_LOGIN/Brill's POS Tagger.git"
+  },
+  "bugs": {
+    "url": "http://github.com/YOUR_LOGIN/Brill's POS Tagger/issues"
+  }
+}
