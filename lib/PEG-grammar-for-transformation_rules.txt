@@ -1,30 +1,57 @@
 {
+
+  function next_tag_is(tagged_sentence, i) {
+
+  }
+
+  function next_word_is_cap(tagged_sentence, i) {
+
+  }
+
+  function prev_1_or_2_or_3_tag(tagged_sentence, i) {
+
+  }
+
+  function prev_1_or_2_tag(tagged_sentence, i) {
+
+  }
+
+  function next_word_is_tag(tagged_sentence, i) {
+
+  }
+
+  function prev_tag_is(tagged_sentence, i) {
+
+  }
+
+  function current_word_is_tag(tagged_sentence, i) {
+
+  }
+
+  var predicates = {
+    "NEXT-TAG-IS": next_tag_is,
+    "NEXT-WORD-IS-CAP": next_word_is_cap,
+    "PREV-1-OR-2-OR-3-TAG": prev_1_or_2_or_3_tag,
+    "PREV-1-OR-2-TAG": prev_1_or_2_tag,
+    "NEXT-WORD-IS-TAG": next_word_is_tag,
+    "PREV-TAG-IS": prev_tag_is,
+    "CURRENT-WORD-IS-TAG": current_word_is_tag
+  }
+
   function Predicate(name, parameter) {
     this.name = name;
     this.parameter = parameter;
   }
-
-  Predicate.prototype.evaluate = function(tagged_sentence, i) {
-    switch(this.name) {
-      case "NEXT-TAG": {}
-      case "NEXT-WORD-IS-CAP": {}
-      case "PREV-1-OR-2-OR-3-TAG": {}
-      case "PREV-1-OR-2-TAG": {}
-      case "NEXT-WORD-IS-TAG": {}
-      case "PREV-TAG": {}
-      case "CURRENT-WORD-IS-TAG": {}
-      default: {return(false);}
-    }
-  };
- 
-  function TransformationRule(c1, c2, predicate) {
-    this.predicate = predicate;
+   
+  function TransformationRule(c1, c2, predicate, parameter) {
+    this.literal = [c1, c2, predicate, parameter];
+    this.predicate = predicates[predicate];
     this.old_category = c1;
     this.new_category = c2;
   }
 
   TransformationRule.prototype.apply = function(tagged_sentence, position) {
-    if (this.predicate.evaluate(tagged_sentence, position)) {
+    if (this.predicate(tagged_sentence, position)) {
       tagged_sentence[i][1] = this.new_category;
     }
   };
@@ -42,10 +69,8 @@ transformation_rules = rules: (S transformation_rule S) +
 
 transformation_rule = c1: category S_no_eol c2: category S_no_eol pred: predicate S_no_eol par: parameter
 {
-  // Construct predicate
-  var predicate = new Predicate(pred, par);
   // Construct rule
-  var result = new TransformationRule(c1, c2, predicate);
+  var result = new TransformationRule(c1, c2, pred, par);
   return(result);
 }
 
