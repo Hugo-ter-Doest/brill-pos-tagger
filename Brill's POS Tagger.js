@@ -15,13 +15,14 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+var Tagger = require("./lib/brill_pos_tagger");
 
-var http = require('http');
-http.createServer(function (req, res) {
-  res.writeHead(200, {
-    'Content-Type': 'text/plain; charset=UTF-8'
-  });
-  
-  res.end('Hello from Brill\'s POS Tagger.\n');
-          
-}).listen(9080, "");
+var tagger = new Tagger(function(error) {
+  if (error) {
+    console.log(error);
+  }
+  else {
+    var sentence = ["I", "see", "the", "man", "with", "the", "telescope"];
+    console.log(JSON.stringify(tagger.tag(sentence)));
+  }
+});

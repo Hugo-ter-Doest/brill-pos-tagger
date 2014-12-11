@@ -1,5 +1,5 @@
 {
-  "name": "Brill's POS Tagger",
+  "name": "brill-pos-tagger",
   "description": "",
   "version": "0.0.1",
   "main": "./Brill's POS Tagger.js",
