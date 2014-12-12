@@ -2,7 +2,7 @@
   "name": "brill-pos-tagger",
   "description": "",
   "version": "0.0.1",
-  "main": "./Brill's POS Tagger.js",
+  "main": "./brill-example.js",
   "author": {
     "name": "Hugo W.L. ter Doest",
     "email": "hwl.ter.doest@gmail.com"
