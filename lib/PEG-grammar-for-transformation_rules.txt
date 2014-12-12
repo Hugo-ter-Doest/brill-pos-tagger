@@ -98,6 +98,8 @@
     "CURRENT-WORD-IS-CAP": current_word_is_cap
   };
 
+  var category_wild_card = "*";
+
   function TransformationRule(c1, c2, predicate, parameter) {
     this.literal = [c1, c2, predicate, parameter];
     this.predicate = predicates[predicate];
@@ -111,8 +113,11 @@
   }
 
   TransformationRule.prototype.apply = function(tagged_sentence, position) {
-    if (this.predicate(tagged_sentence, position, this.parameter)) {
-      tagged_sentence[position][1] = this.new_category;
+    if ((tagged_sentence[i][1] === this.old_category) ||
+        (this.old_category === category_wild_card)) {
+      if (this.predicate(tagged_sentence, position, this.parameter)) {
+        tagged_sentence[position][1] = this.new_category;
+      }
     }
   };
 }
