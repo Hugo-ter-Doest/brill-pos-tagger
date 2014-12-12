@@ -28,24 +28,38 @@
 
   }
 
+  function prev_word_is_cap(tagged_sentence, i) {
+  
+  }
+
+  function current_word_is_cap(tagged_sentence, i) {
+  
+  }
+  
+  function default_transformation_rule(tagged_sentence, i) {
+  
+  }
+  
   var predicates = {
-    "NEXT-TAG-IS": next_tag_is,
+    "NEXT-TAG": next_tag_is,
     "NEXT-WORD-IS-CAP": next_word_is_cap,
     "PREV-1-OR-2-OR-3-TAG": prev_1_or_2_or_3_tag,
     "PREV-1-OR-2-TAG": prev_1_or_2_tag,
     "NEXT-WORD-IS-TAG": next_word_is_tag,
-    "PREV-TAG-IS": prev_tag_is,
-    "CURRENT-WORD-IS-TAG": current_word_is_tag
-  }
+    "PREV-TAG": prev_tag_is,
+    "CURRENT-WORD-IS-TAG": current_word_is_tag,
+    "PREV-WORD-IS-CAP": prev_word_is_cap,
+    "CURRENT-WORD-IS-CAP": current_word_is_cap
+  };
 
-  function Predicate(name, parameter) {
-    this.name = name;
-    this.parameter = parameter;
-  }
-   
   function TransformationRule(c1, c2, predicate, parameter) {
     this.literal = [c1, c2, predicate, parameter];
     this.predicate = predicates[predicate];
+    if (!this.predicate) {
+      this.predicate = default_transformation_rule;
+    }
+    console.log("X" + predicate + "X");
+    console.log(this.predicate);
     this.old_category = c1;
     this.new_category = c2;
   }
@@ -81,7 +95,7 @@ predicate = identifier
 parameter = identifier
 
 identifier =
-  characters: [a-zA-Z_0-9_-]+ S_no_eol
+  characters: [\.a-zA-Z_0-9_-]+ S_no_eol
   {
    var s = "";
    for (var i = 0; i < characters.length; i++) {
