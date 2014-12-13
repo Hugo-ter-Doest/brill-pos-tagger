@@ -71,7 +71,7 @@ POSTagger.prototype.tag = function(words){
         //  HtD: VBD NN PREV-TAG DT
         //  HtD: VBP NN PREV-TAG DT
         //  HtD: VB NN PREV-TAG DT
-        if (i > 0 && ret[i - 1] == "DT") {
+        if (i > 0 && (ret[i - 1] === "DT")) {
             if (word == "VBD" ||
             word == "VBP" ||
             word == "VB") {

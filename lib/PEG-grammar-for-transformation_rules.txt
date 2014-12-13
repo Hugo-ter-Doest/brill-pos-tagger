@@ -1,4 +1,44 @@
 {
+  function current_word_is_number(tagged_sentence, i, parameter) {
+    var is_number = false;
+    if (words[i].indexOf(".") > -1) {
+      // url if there are two contiguous alpha characters
+      if (/[a-zA-Z]{2}/.test(words[i])) {
+        // 
+      }
+      else {
+        is_number = true;
+      }
+    }
+    // Attempt to convert into a number
+    if (parseFloat(words[i]))
+      ret[i] = true;
+    }
+    return((parameter === "YES) ? is_number : !is_number);
+  }
+
+  // Checks if the current word is a url
+  // Adapted from the original Javascript Brill tagger
+  function current_word_is_url(tagged_sentence, i, parameter) {
+    var is_url = false;
+    if (words[i].indexOf(".") > -1) {
+      // url if there are two contiguous alpha characters
+      if (/[a-zA-Z]{2}/.test(words[i])) {
+        is_url = true; 
+      }
+    }
+    return((parameter === "YES) ? is_url : !is_url);
+  }
+
+  // Indicates whether or not this string ends with the specified string.
+  // Adapted from the original Javascript Brill tagger
+  function current_word_ends_with(tagged_sentence, i, parameter) {
+    var word = tagged_sentence[i][0];
+    if (!parameter|| parameter.length > word.length) {
+      return false;
+    }
+    return(word.indexOf(parameter) === (word.length - parameter.length));
+  }
 
   function next_tag_is(tagged_sentence, i, parameter) {
     if (i < tagged_sentence.length - 1) {
