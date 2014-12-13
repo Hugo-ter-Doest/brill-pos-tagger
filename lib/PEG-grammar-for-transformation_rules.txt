@@ -11,10 +11,10 @@
       }
     }
     // Attempt to convert into a number
-    if (parseFloat(words[i]))
-      ret[i] = true;
+    if (parseFloat(words[i])) {
+      is_number = true;
     }
-    return((parameter === "YES) ? is_number : !is_number);
+    return((parameter === "YES") ? is_number : !is_number);
   }
 
   // Checks if the current word is a url
@@ -27,7 +27,11 @@
         is_url = true; 
       }
     }
-    return((parameter === "YES) ? is_url : !is_url);
+    return((parameter === "YES") ? is_url : !is_url);
+  }
+
+  function prev_word_is(tagged_sentence, i, parameter) {
+    return(tagged_sentence[i][0].toLowerCase() === parameter.toLowerCase());
   }
 
   // Indicates whether or not this string ends with the specified string.
@@ -116,7 +120,6 @@
     return(false);
   }
 
-
   function current_word_is_cap(tagged_sentence, i, parameter) {
     var current_word = tagged_sentence[i][0];
     return(current_word[0] === current_word[0].toUpperCase());
@@ -135,7 +138,11 @@
     "PREV-TAG": prev_tag_is,
     "CURRENT-WORD-IS-TAG": current_word_is_tag,
     "PREV-WORD-IS-CAP": prev_word_is_cap,
-    "CURRENT-WORD-IS-CAP": current_word_is_cap
+    "CURRENT-WORD-IS-CAP": current_word_is_cap,
+    "CURRENT-WORD-IS-NUMBER": current_word_is_number,
+    "CURRENT-WORD-IS-URL": current_word_is_url,
+    "CURRENT-WORD-ENDS-WITH": current_word_ends_with,
+    "PREV-WORD-IS": prev_word_is
   };
 
   var category_wild_card = "*";
