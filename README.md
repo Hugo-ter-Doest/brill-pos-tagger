@@ -76,7 +76,7 @@ function(sentence) {
 #Adding a predicate
 Predicates are defined in the grammar specification for transformation rules:
 ```
-lib/PEG_grammar_for_transformation_rules.txt
+lib/TF_Parser.pegjs
 ```
 
 In that file a function must be created that serves as predicate. A predicate accepts a tagged sentence, the current position in the sentence that being tagged, and the outcome of the predicate. An example of a predicate that checks the category of the current word:
@@ -91,6 +91,10 @@ var predicates = {
   "CURRENT-WORD-IS-TAG": current_word_is_tag,
   "PREV-WORD-IS-CAP": prev_word_is_cap
 }
+```
+After editing the grammar file generate a new Javascript file <code>TF_Parser.js</code> using PEG.js:
+```
+pegjs TF_Parser.pegjs
 ```
 
 #Acknowledgements/references
