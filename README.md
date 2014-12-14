@@ -21,13 +21,19 @@ var tagger = new Tagger(lexicon_file, rules_file, function(error) {
 ```
 
 #Lexicon
-The lexicon is a JSON file that has the following structure:
+The lexicon is either a JSON file that has the following structure:
 ```
 {
   "word1": ["cat1"],
   "word2": ["cat2", "cat3"],
   ...
 }
+```
+or a text file:
+```
+word1 cat1 cat2
+word2 cat3
+...
 ```
 Words may have multiple categories in the lexicon file. The tagger uses only the first one.
 
