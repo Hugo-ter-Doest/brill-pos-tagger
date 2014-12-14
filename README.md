@@ -22,7 +22,7 @@ This means that if the predicate is true that if the category of the current pos
 NN CD CURRENT-WORD-IS-NUMBER YES
 ```
 This means that if the outcome of CURRENT-WORD-IS-NUMBER must be YES, the category is replaced by <code>CD</code>
-Also the parameter can be used to check the category of a word in the sentence:
+The parameter can also be used to check the category of a word in the sentence:
 ```
 VBD NN PREV-TAG DT
 ```
@@ -68,8 +68,8 @@ function current_word_is_tag(tagged_sentence, i, parameter) {
 ```
 Next step is to map a keyword to this predicate so that it can be used in the transformation rules. The mapping is also defined in the grammar file:
 ```
-  var predicates = {
-    "CURRENT-WORD-IS-TAG": current_word_is_tag,
-    "PREV-WORD-IS-CAP": prev_word_is_cap
-  }
+var predicates = {
+  "CURRENT-WORD-IS-TAG": current_word_is_tag,
+  "PREV-WORD-IS-CAP": prev_word_is_cap
+}
 ```
