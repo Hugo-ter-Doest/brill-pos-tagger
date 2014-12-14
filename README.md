@@ -34,7 +34,7 @@ The tagger applies transformation rules that may change the category of words. T
 function(sentence) {
   var tagged_sentence = new Array(sentence.length);
 
-  // Initialise result
+  // Initialise tagged_sentence
   for (var i = 0, size = sentence.length; i < size; i++) {
     var ss = this.lexicon[sentence[i]];
     if (!ss) {
@@ -73,3 +73,7 @@ var predicates = {
   "PREV-WORD-IS-CAP": prev_word_is_cap
 }
 ```
+
+#Acknowledgements/references
+* Part of speech tagger by Percy Wegmann, https://code.google.com/p/jspos/
+* A simple rule-based part of speech tagger, Eric Brill, Published in: Proceeding ANLC '92 Proceedings of the third conference on Applied natural language processing, Pages 152-155. http://dl.acm.org/citation.cfm?id=974526
