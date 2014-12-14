@@ -1,18 +1,14 @@
 {
+
+  function isNumeric(num) {
+    return (!isNaN(num));
+  }
+
   function current_word_is_number(tagged_sentence, i, parameter) {
-    var is_number = false;
-    if (words[i].indexOf(".") > -1) {
-      // url if there are two contiguous alpha characters
-      if (/[a-zA-Z]{2}/.test(words[i])) {
-        // 
-      }
-      else {
-        is_number = true;
-      }
-    }
-    // Attempt to convert into a number
-    if (parseFloat(words[i])) {
-      is_number = true;
+    var is_number = isNumeric(tagged_sentence[i][0]);
+    // Attempt to parse it as a float
+    if (!is_number) {
+      is_number = parseFloat(tagged_sentence[i][0]);
     }
     return((parameter === "YES") ? is_number : !is_number);
   }
@@ -21,9 +17,9 @@
   // Adapted from the original Javascript Brill tagger
   function current_word_is_url(tagged_sentence, i, parameter) {
     var is_url = false;
-    if (words[i].indexOf(".") > -1) {
+    if (tagged_sentence[i][0].indexOf(".") > -1) {
       // url if there are two contiguous alpha characters
-      if (/[a-zA-Z]{2}/.test(words[i])) {
+      if (/[a-zA-Z]{2}/.test(tagged_sentence[i][0])) {
         is_url = true; 
       }
     }
@@ -108,7 +104,7 @@
   }
 
   function current_word_is_tag(tagged_sentence, i, parameter) {
-    return(tagged_sentence[i][0] === paramter);
+    return(tagged_sentence[i][0] === parameter);
   }
 
   function prev_word_is_cap(tagged_sentence, i, parameter) {
@@ -155,12 +151,13 @@
     }
     console.log("X" + predicate + "X");
     console.log(this.predicate);
+    this.parameter = parameter;
     this.old_category = c1;
     this.new_category = c2;
   }
 
   TransformationRule.prototype.apply = function(tagged_sentence, position) {
-    if ((tagged_sentence[i][1] === this.old_category) ||
+    if ((tagged_sentence[position][1] === this.old_category) ||
         (this.old_category === category_wild_card)) {
       if (this.predicate(tagged_sentence, position, this.parameter)) {
         tagged_sentence[position][1] = this.new_category;
@@ -179,14 +176,16 @@ transformation_rules = rules: (S transformation_rule S) +
   return(result);
 }
 
-transformation_rule = c1: category S_no_eol c2: category S_no_eol pred: predicate S_no_eol par: parameter
+transformation_rule = c1: category1 S_no_eol c2: category2 S_no_eol pred: predicate S_no_eol par: parameter
 {
   // Construct rule
   var result = new TransformationRule(c1, c2, pred, par);
   return(result);
 }
 
-category = identifier
+category1 = wild_card / identifier
+
+category2 = identifier
 
 predicate = identifier
 
@@ -201,6 +200,8 @@ identifier =
    }
    return(s);
   }
+
+wild_card = "*" S_no_eol
 
 // Blanks
 EOL =
