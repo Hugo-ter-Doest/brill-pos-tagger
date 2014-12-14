@@ -15,7 +15,7 @@ Words may have multiple categories in the lexicon file. The tagger uses only the
 #Specifying transformation rules
 Transformation rules are specified as follows:
 ```
-OLD_CAT_OLD NEW_CAT PREDICATE PARAMETER
+OLD_CAT NEW_CAT PREDICATE PARAMETER
 ```
 This means that if the predicate is true that if the category of the current position is OLD_CAT, the category is replaced by NEW_CAT. The predicate may use the parameter in distinct ways: sometimes the parameter is used for specifying the outcome of the predicate:
 ```
@@ -27,6 +27,32 @@ Also the parameter can be used to check the category of a word in the sentence:
 VBD NN PREV-TAG DT
 ```
 Here the category of the previous word must be <code>DT</code> for the rule to be applied.
+
+#Algorithm
+The tagger applies transformation rules that may change the category of words. The input sentence must be split into words which are assigned with categories. The tagged sentence is then processed from left to right. At each step all rules are applied once; rules are applied in the order in which they are specified. Algorithm:
+```
+function(sentence) {
+  var tagged_sentence = new Array(sentence.length);
+
+  // Initialise result
+  for (var i = 0, size = sentence.length; i < size; i++) {
+    var ss = this.lexicon[sentence[i]];
+    if (!ss) {
+      ss = this.lexicon[sentence[i].toLowerCase()];
+    }
+    tagged_sentence[i] = [];
+    tagged_sentence[i][0] = sentence[i];
+    tagged_sentence[i][1] = ss[0];
+  }
+  // Apply transformation rules
+  for (var i = 0, size = sentence.length; i < size; i++) {
+    this.transformation_rules.forEach(function(rule) {
+      rule.apply(tagged_sentence, i);
+    });
+  }
+  return(tagged_sentence);
+}
+```
 
 #Adding a predicate
 Predicates are defined in the grammar specification for transformation rules:
