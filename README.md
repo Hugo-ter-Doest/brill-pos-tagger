@@ -99,4 +99,5 @@ pegjs TF_Parser.pegjs
 
 #Acknowledgements/references
 * Part of speech tagger by Percy Wegmann, https://code.google.com/p/jspos/
+* Node.js version of jspos: https://github.com/neopunisher/pos-js
 * A simple rule-based part of speech tagger, Eric Brill, Published in: Proceeding ANLC '92 Proceedings of the third conference on Applied natural language processing, Pages 152-155. http://dl.acm.org/citation.cfm?id=974526

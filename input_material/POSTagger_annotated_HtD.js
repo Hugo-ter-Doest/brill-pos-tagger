@@ -15,7 +15,7 @@ function POSTagger(){
  * Indicates whether or not this string starts with the specified string.
  * @param {Object} string
  */
-function startsWith($this, string){
+function startsWith($this, string){ 
     if (!string)
         return false;
     return $this.indexOf(string) == 0;

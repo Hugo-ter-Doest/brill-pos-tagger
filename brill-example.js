@@ -19,15 +19,30 @@ var Tagger = require("./lib/brill_pos_tagger");
 
 var base_folder = "/home/hugo/workspace/brill-pos-tagger";
 //var base_folder = "/Eclipse Workspace/brill-pos-tagger";
-var rules_file = base_folder + "/data/tr_from_pos.txt";
-var lexicon_file = base_folder + "/data/lexicon.json";
+var en_rules_file = base_folder + "/data/English/tr_from_posjs.txt";
+var en_lexicon_file = base_folder + "/data/English/lexicon_from_posjs.json";
+var en_ex_sentence = ["I", "see", "the", "man", "with", "the", "telescope"];
 
-var tagger = new Tagger(lexicon_file, rules_file, function(error) {
+var du_rules_file = base_folder + "/data/Dutch/brill_CONTEXTRULES.jg";
+var du_lexicon_file = base_folder + "/data/Dutch/brill_LEXICON.jg";
+var du_ex_sentence = ["ik", "zie", "de", "man", "met", "de", "verrekijker"];
+
+var tagger = new Tagger(en_lexicon_file, en_rules_file, function(error) {
   if (error) {
     console.log(error);
   }
   else {
-    var sentence = ["I", "see", "the", "man", "with", "the", "telescope"];
-    console.log(JSON.stringify(tagger.tag(sentence)));
+    console.log(JSON.stringify(tagger.tag(en_ex_sentence)));
   }
 });
+
+/*
+tagger = new Tagger(du_lexicon_file, du_rules_file, function(error) {
+  if (error) {
+    console.log(error);
+  }
+  else {
+    console.log(JSON.stringify(tagger.tag(du_ex_sentence)));
+  }
+});
+*/
