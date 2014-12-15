@@ -80,27 +80,18 @@ function(sentence) {
 ```
 
 #Adding a predicate
-Predicates are defined in the grammar specification for transformation rules:
-```
-lib/TF_Parser.pegjs
-```
-
-In that file a function must be created that serves as predicate. A predicate accepts a tagged sentence, the current position in the sentence that being tagged, and the outcome of the predicate. An example of a predicate that checks the category of the current word:
+Predicates are defined in module <code>lib/Predicate.js</code>. In that file a function must be created that serves as predicate. A predicate accepts a tagged sentence, the current position in the sentence that is being tagged, and the outcome(s) of the predicate. An example of a predicate that checks the category of the current word:
 ```
 function current_word_is_tag(tagged_sentence, i, parameter) {
   return(tagged_sentence[i][0] === parameter);
 }
 ```
-Next step is to map a keyword to this predicate so that it can be used in the transformation rules. The mapping is also defined in the grammar file:
+Some predicates accept two parameters. Next step is to map a keyword to this predicate so that it can be used in the transformation rules. The mapping is also defined in the grammar file:
 ```
 var predicates = {
   "CURRENT-WORD-IS-TAG": current_word_is_tag,
   "PREV-WORD-IS-CAP": prev_word_is_cap
 }
-```
-After editing the grammar file generate a new Javascript file <code>TF_Parser.js</code> using PEG.js:
-```
-pegjs TF_Parser.pegjs
 ```
 
 #Acknowledgements/references
