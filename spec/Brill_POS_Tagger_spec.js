@@ -23,7 +23,13 @@ var base_folder = "/home/hugo/Workspace/brill-pos-tagger";
 //var base_folder = "/Eclipse Workspace/brill-pos-tagger";
 var en_rules_file = base_folder + "/data/English/tr_from_posjs.txt";
 var en_lexicon_file = base_folder + "/data/English/lexicon_from_posjs.json";
-var en_ex_sentences = [["I", "see", "the", "man", "with", "the", "telescope"]];
+var en_ex_sentences = [["I", "see", "the", "man", "with", "the", "telescope"],
+                       ["The", "run", "lasted", "thirty", "minutes"],
+                       ["We", "run", "three", "miles", "every", "day"],
+                       ["He", "will", "race", "the", "car"],
+                       ["He", "will", "not", "race", "the", "car"],
+                       ["When", "will", "the", "race", "end"]
+                      ];
 
 var du_rules_file = base_folder + "/data/Dutch/brill_CONTEXTRULES.jg";
 var du_lexicon_file = base_folder + "/data/Dutch/brill_LEXICON.jg";
