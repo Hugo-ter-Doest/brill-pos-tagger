@@ -71,7 +71,6 @@ describe('Brill\'s POS Tagger', function() {
       var taggedWords_expected = old_brill_tagger.tag(tokenized_sentence);
       var taggedWords = brill_pos_tagger.tag(tokenized_sentence);
       expect(taggedWords).toEqual(taggedWords_expected);
-      console.log(taggedWords)
     });
   });
 });
