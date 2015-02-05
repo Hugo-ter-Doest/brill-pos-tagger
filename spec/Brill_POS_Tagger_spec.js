@@ -33,7 +33,8 @@ var en_ex_sentences = [["I", "see", "the", "man", "with", "the", "telescope"],
                        ["When", "will", "the", "race", "end"]
                       ];
                       
-var en_ex_nyt_article = base_folder + "/data/English/NYT-20150205-picassos-granddaughter-plans-to-sell-art-worrying-the-market.txt";              
+var en_ex_nyt_article = base_folder + "/spec/NYT-20150205-picassos-granddaughter-plans-to-sell-art-worrying-the-market.txt";
+var en_ex_nyt_article_expected_tag_results = base_folder + '/spec/NYT-20150205-picassos-granddaughter-plans_expected_tag_results.txt';
 
 var du_rules_file = base_folder + "/data/Dutch/brill_CONTEXTRULES.jg";
 var du_lexicon_file = base_folder + "/data/Dutch/brill_LEXICON.jg";
@@ -63,14 +64,21 @@ describe('Brill\'s POS Tagger', function() {
       done();
     });
   });
+  
+  it('should correctly read tag results of pos-js for the NYT article', function(done) {
+    fs.readFile(en_ex_nyt_article_expected_tag_results, 'utf8', function (error, text) {
+      posjs_results = JSON.parse(text);
+      done();
+    });
+  });
+  
   var tokenizer = new natural.WordTokenizer();
 
-  it('should process tag sentences just like the old pos module', function() {
-    sentences.forEach(function(sentence){
-    var tokenized_sentence = tokenizer.tokenize(sentence);
-      var taggedWords_expected = old_brill_tagger.tag(tokenized_sentence);
+  it('should process tag the article just like the old pos module', function() {
+    sentences.forEach(function(sentence, index) {
+      var tokenized_sentence = tokenizer.tokenize(sentence);
       var taggedWords = brill_pos_tagger.tag(tokenized_sentence);
-      expect(taggedWords).toEqual(taggedWords_expected);
+      expect(taggedWords).toEqual(posjs_results[index]);
     });
   });
 });
