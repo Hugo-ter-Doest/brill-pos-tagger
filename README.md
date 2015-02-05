@@ -63,16 +63,8 @@ The tagger applies transformation rules that may change the category of words. T
 function(sentence) {
   var tagged_sentence = new Array(sentence.length);
 
-  // Initialise tagged_sentence
-  for (var i = 0, size = sentence.length; i < size; i++) {
-    var ss = this.lexicon[sentence[i]];
-    if (!ss) {
-      ss = this.lexicon[sentence[i].toLowerCase()];
-    }
-    tagged_sentence[i] = [];
-    tagged_sentence[i][0] = sentence[i];
-    tagged_sentence[i][1] = ss[0];
-  }
+  // snip
+
   // Apply transformation rules
   for (var i = 0, size = sentence.length; i < size; i++) {
     this.transformation_rules.forEach(function(rule) {
