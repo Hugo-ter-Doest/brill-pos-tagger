@@ -1,6 +1,6 @@
 /*
     Unit test for Brill's POS Tagger: test against the pos module
-    Copyright (C) 2014 Hugo W.L. ter Doest
+    Copyright (C) 2015 Hugo W.L. ter Doest
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by

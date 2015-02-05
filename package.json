@@ -1,21 +1,26 @@
 {
   "name": "brill-pos-tagger",
-  "description": "",
+  "description": "Part of speech tagger based on Eric Brill's algorithm",
   "version": "0.0.2",
-  "main": "./brill-example.js",
+  "main": "brill-pos-tagger",
   "author": {
     "name": "Hugo W.L. ter Doest",
     "email": "hwl.ter.doest@gmail.com"
   },
-  "keywords": [],
+  "keywords": ["Brill's tagger", "part of speech tagger", "tagger", "POS tagger"],
   "licenses": {
     "type": "gpl30"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/YOUR_LOGIN/Brill's POS Tagger.git"
+    "url": "git://github.com/Hugo-ter-Doest/brill-pos-tagger.git"
   },
   "bugs": {
-    "url": "http://github.com/YOUR_LOGIN/Brill's POS Tagger/issues"
+    "url": "http://github.com/Hugo-ter-Doest/bril-pos-tagger/issues"
+  },
+  "dependencies": {
+    "log4js": "*",
+    "natural": "*",
+    "pos": "*"
   }
 }
