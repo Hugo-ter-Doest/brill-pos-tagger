@@ -36,7 +36,7 @@ var du_ex_volkskrant_article = base_folder + '/spec/Volkskrant-20150205-Knot-gel
 describe('Brill\'s POS Tagger', function() {
   var brill_pos_tagger;
   it('should initialise correctly with tagging rules for English', function(done) {
-    brill_pos_tagger = new Brill_POS_Tagger(en_lexicon_file, en_rules_file, function(error) {
+    brill_pos_tagger = new Brill_POS_Tagger(en_lexicon_file, en_rules_file, 'NN', function(error) {
       done();
     });
   });
@@ -67,12 +67,8 @@ describe('Brill\'s POS Tagger', function() {
     });
   });
   
-  var brill_pos_tagger1;
   it('should initialise correctly with tagging rules for Dutch', function(done) {
-    brill_pos_tagger1 = new Brill_POS_Tagger(du_lexicon_file, du_rules_file, function(error) {
-      if (error) {
-        console.log(error);
-      }
+    brill_pos_tagger = new Brill_POS_Tagger(du_lexicon_file, du_rules_file, 'N', function(error) {
       done();
     });
   });
@@ -87,9 +83,8 @@ describe('Brill\'s POS Tagger', function() {
   it('should process the article', function() {
     sentences.forEach(function(sentence, index) {
       var tokenized_sentence = tokenizer.tokenize(sentence);
-      var taggedWords = brill_pos_tagger1.tag(tokenized_sentence);
-      //expect(taggedWords).toEqual(posjs_results[index]);
-      //console.log(taggedWords);
+      var taggedWords = brill_pos_tagger.tag(tokenized_sentence);
+      expect(tokenized_sentence.length).toEqual(taggedWords.length);
     });
   });
   

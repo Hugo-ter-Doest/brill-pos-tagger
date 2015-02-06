@@ -12,8 +12,9 @@ var Tagger = require("./lib/brill_pos_tagger");
 var base_folder = "/home/hugo/workspace/brill-pos-tagger";
 var rules_file = base_folder + "/data/tr_from_pos.txt";
 var lexicon_file = base_folder + "/data/lexicon.json";
+var default_category = 'N';
 
-var tagger = new Tagger(lexicon_file, rules_file, function(error) {
+var tagger = new Tagger(lexicon_file, rules_file, default_category, function(error) {
   if (error) {
     console.log(error);
   }
