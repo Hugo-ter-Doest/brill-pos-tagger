@@ -1,7 +1,7 @@
 {
   "name": "brill-pos-tagger",
   "description": "Part of speech tagger based on Eric Brill's algorithm",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "main": "brill-pos-tagger",
   "author": {
     "name": "Hugo W.L. ter Doest",
