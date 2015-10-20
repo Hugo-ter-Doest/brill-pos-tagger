@@ -25,13 +25,13 @@ var base_folder = "/home/hugo/Workspace/brill-pos-tagger";
 var en_rules_file = base_folder + "/data/English/tr_from_posjs.txt";
 var en_lexicon_file = base_folder + "/data/English/lexicon_from_posjs.json";
                       
-var en_ex_nyt_article = base_folder + "/spec/NYT-20150205-picassos-granddaughter-plans-to-sell-art-worrying-the-market.txt";
-var en_ex_nyt_article_expected_tag_results = base_folder + '/spec/NYT-20150205-picassos-granddaughter-plans_expected_tag_results.txt';
+var en_ex_nyt_article = base_folder + "/data/English/NYT-20150205-picassos-granddaughter-plans-to-sell-art-worrying-the-market.txt";
+var en_ex_nyt_article_expected_tag_results = base_folder + '/data/English/NYT-20150205-picassos-granddaughter-plans_expected_tag_results.txt';
 
 var du_rules_file = base_folder + "/data/Dutch/brill_CONTEXTRULES.jg";
 var du_lexicon_file = base_folder + "/data/Dutch/brill_LEXICON.jg";
 
-var du_ex_volkskrant_article = base_folder + '/spec/Volkskrant-20150205-Knot-geldpers-aanzetten-is-paardenmiddel-voor-half-procent-inflatie.txt';
+var du_ex_volkskrant_article = base_folder + '/data/Dutch/Volkskrant-20150205-Knot-geldpers-aanzetten-is-paardenmiddel-voor-half-procent-inflatie.txt';
 
 describe('Brill\'s POS Tagger', function() {
   var brill_pos_tagger;
@@ -85,6 +85,7 @@ describe('Brill\'s POS Tagger', function() {
       var tokenized_sentence = tokenizer.tokenize(sentence);
       var taggedWords = brill_pos_tagger.tag(tokenized_sentence);
       expect(tokenized_sentence.length).toEqual(taggedWords.length);
+      console.log(taggedWords);
     });
   });
   

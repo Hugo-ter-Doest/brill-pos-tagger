@@ -83,7 +83,7 @@ function current_word_is_tag(tagged_sentence, i, parameter) {
   return(tagged_sentence[i][0] === parameter);
 }
 ```
-Some predicates accept two parameters. Next step is to map a keyword to this predicate so that it can be used in the transformation rules. The mapping is also defined in the grammar file:
+Some predicates accept two parameters. Next step is to map a keyword to this predicate so that it can be used in the transformation rules. The mapping is also defined in <code>lib/Predicate.js</code>:
 ```
 var predicates = {
   "CURRENT-WORD-IS-TAG": current_word_is_tag,
