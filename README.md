@@ -2,7 +2,7 @@ Brill's POS Tagger
 ==============
 # Installation
 ```
-npm install brill-pos-tagger
+npm install natural
 ```
 
 # Usage
