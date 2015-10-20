@@ -80,7 +80,7 @@ describe('Brill\'s POS Tagger', function() {
     });
   });
   
-  it('should process the article', function() {
+  it('should process the Volkskrant article', function() {
     sentences.forEach(function(sentence, index) {
       var tokenized_sentence = tokenizer.tokenize(sentence);
       var taggedWords = brill_pos_tagger.tag(tokenized_sentence);
